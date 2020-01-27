@@ -1,0 +1,42 @@
+************************
+DBS Quiz 07
+Student 1: Lien Tran (163733173)
+Student 2: Mariam Bawa (149735185)
+Date: 25/11/2019
+************************
+
+UNF: 
+CHEQUE [PayID(PK),chequeNo, date, memo, amount, 
+	(accountNo, payorName, payorAddress, payorCity, payorProvince, payorPostal),
+	(payeeID, payeeName),
+	(branchID, InsNo)
+];
+
+1NF:
+CHEQUE [PayID(PK),chequeNo, date, memo, amount];
+PAYOR [accountNo(PK), payorName, payorAddress, payorCity, payorProvince, payorPostal];
+PAYEE [payeeID(PK), payeeName];
+BRANCH [branchID(PK), branchLocation, branchCity, branchProvince, branchPostal];
+INSTITUTION [insID(PK), insName];
+
+
+2NF: 
+PAYOR [payorID(PK), payorName, payorAddress, payorCity, payorProvince, payorPostal];
+ACCOUNT [accountNo(PK), branchID(FK)];
+PAYOR_ACCOUNTS [accountNo(PK), payorID(PK)]
+CHEQUE [PayID(PK),chequeNo, accountNo(PK), PayeeID(FK), date, memo, amount];
+PAYEE [payeeID(PK), payeeName];
+BRANCH [branchID(PK), branchLocation, branchCity, branchProvince,branchPostal,instID(FK)];
+INSTITUTION [insID(PK), insName];
+
+3NF: 
+PAYOR [payorID(PK), payorName, payorAddress, payorCity, payorProvince, payorPostal];
+ACCOUNT [accountNo(PK), branchID(FK)];
+PAYOR_ACCOUNTS [accountNo(PK), payorID(PK)];
+CHEQUE [PayID(PK), accountNo(PK), payeeID(FK),chequeNo, date, memo, amount];
+PAYEE [payeeID(PK), payeeName];
+BRANCH [branchID(PK), branchLocation, branchCity, branchProvince, branchPostal, instID(FK)];
+INSTITUTION [instID(PK), instName];
+
+
+
